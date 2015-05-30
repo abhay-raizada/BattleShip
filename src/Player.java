@@ -1,3 +1,7 @@
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+
 
 public class Player {
 	AI ai;
@@ -5,6 +9,7 @@ public class Player {
 	Ship ship2 = new Ship(3);
 	Ship ship3 = new Ship(5);
 	int[][] board = new int[5][5];
+	Rectangle[][] rect = new Rectangle[5][5];
 	public Player (AI ai){
 		
 		this.ai =ai;
@@ -75,12 +80,46 @@ public class Player {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	public void shoot(AI ai){
-		int x=-1,y=-1;
+	public void shoot(AI ai,int x,int y){
 		//Get Input for x and y, the coordinates to shoot at
-		ai.board[x][y]=0;
+		if(ai.board[x][y]==1)
+			ai.board[x][y]=0;
+		else{
+			ai.board[x][y]=2;
+		}
+		System.out.println(x+","+y+" shot!");
 	}
-	
+	public void draw(Graphics2D g,int boardX,int boardY,int cellW,int cellH,int padding){
+		 
+		 for(int row=0 ; row < 5 ; row++ ){
+	            
+	            for(int column=0 ; column < 5 ; column++ ){
+	                if(board[row][column]==-1){
+	                	g.setColor(Color.YELLOW);
+	                	rect[row][column] = new Rectangle(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);
+	                    g.fill(rect[row][column]);
+	                }else if(board[row][column]==0){
+	                	g.setColor(Color.RED);
+	                	rect[row][column] = new Rectangle(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);
+	                    g.fill(rect[row][column]);
+	                    //Systeg.fillRect(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);m.out.print("\t"+"*");
+	                }else if(board[row][column]==1){
+	                	g.setColor(Color.GREEN);
+	                	rect[row][column] = new Rectangle(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);
+	                    g.fill(rect[row][column]);
+	                    //System.out.print("\t"+"X");
+	                }
+	                else if(board[row][column]==2){
+	                	g.setColor(Color.PINK);
+	                	rect[row][column] = new Rectangle(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);
+	                    g.fill(rect[row][column]);
+	                    //System.out.print("\t"+"X");
+	                }
+	                
+	            }
+	            //System.out.println();
+	        }
+	}
 		
 }
 
