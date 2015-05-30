@@ -37,6 +37,9 @@ public class battleShip extends Canvas {
         battleShip game = new battleShip();
         game.run();
     }
+    public void Menu(){
+    	
+    }
     public void run(){
     	createBufferStrategy(2);
 		strategy = getBufferStrategy();
@@ -51,7 +54,7 @@ public class battleShip extends Canvas {
     	g.drawString("Player Board", 75, 30);
     	g.drawString("Opponent Board", 475, 30);
     	drawBoardPlayer(g);
-    	drawBoardOpponent(g,ai);
+    	ai.draw(g, 475, 150, 50, 50, 10);
     	while(running){
     		
     	}
@@ -61,29 +64,7 @@ public class battleShip extends Canvas {
     
     
     
-    private void drawBoardOpponent(Graphics2D g,AI ai) {
-    	int boardX=475,boardY=150,cellW=50,cellH=50,padding=10;
-    	for(int row=0 ; row < 5 ; row++ ){
-            
-            for(int column=0 ; column < 5 ; column++ ){
-                if(ai.board[row][column]==-1){
-                	g.setColor(Color.YELLOW);
-                    g.fillRect(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);
-                }else if(ai.board[row][column]==0){
-                	g.setColor(Color.RED);
-                	g.fillRect(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);
-                    //System.out.print("\t"+"*");
-                }else if(ai.board[row][column]==1){
-                	g.setColor(Color.GREEN);
-                    g.fillRect(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);
-                    //System.out.print("\t"+"X");
-                }
-                
-            }
-            System.out.println();
-        }
-
-	}
+    
 	private void drawBoardPlayer(Graphics2D g) {
 		
     }
