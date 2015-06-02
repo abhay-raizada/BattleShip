@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 public class AI {
-
+	 int shotsHit=0;
 	 int[][] board = new int[5][5];
 	 Random r = new Random();
 	 Player p;
@@ -66,10 +66,28 @@ public class AI {
 		}
 		return false;
 	}
+	public void Hit(){
+		shotsHit++;
+	}
 	public void shoot(Player p){
-		    int x=r.nextInt(width),y=r.nextInt(height);
-			//Get Input for x and y, the coordinates to shoot at
-			p.board[x][y]=0;
+		    int x=r.nextInt(5),y=r.nextInt(5);
+		    try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    while(p.board[x][y]==0||p.board[x][y]==2){
+		    	x=r.nextInt(5);y=r.nextInt(5);
+		    }
+		    
+		    if(p.board[x][y]==1){
+				p.board[x][y]=0;
+		    	Hit();
+		    }	
+			else if(p.board[x][y]==-1){
+				p.board[x][y]=2;
+			}
 		}
 	 public AI(){
 		 initBoard();
