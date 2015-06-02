@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-
 public class Player {
 	AI ai;
 	Ship ship1 = new Ship(1);
@@ -10,9 +9,16 @@ public class Player {
 	Ship ship3 = new Ship(5);
 	int[][] board = new int[5][5];
 	Rectangle[][] rect = new Rectangle[5][5];
+	Rectangle[] Ships = new Rectangle[3];
 	public Player (AI ai){
 		
 		this.ai =ai;
+		initShips();
+	}
+	public void initShips(){
+		for(int i=0;i<3;i++){
+			Ships[i]= new Rectangle(100,100+10*i,10,10);
+		}
 	}
 	public void initBoard(int[][] board){
         for(int row=0 ; row < 5 ; row++ )
@@ -43,6 +49,11 @@ public class Player {
 			}
 		}
 		return false;
+	}
+	public void drawSelection(Graphics2D g){
+		g.fill(Ships[0]);
+		g.fill(Ships[1]);
+		g.fill(Ships[2]);
 	}
 	public void arrangeBoard(int length){
 		boolean orientation = getOrientation();
@@ -84,7 +95,7 @@ public class Player {
 		//Get Input for x and y, the coordinates to shoot at
 		if(ai.board[x][y]==1)
 			ai.board[x][y]=0;
-		else{
+		else if(ai.board[x][y]==-1){
 			ai.board[x][y]=2;
 		}
 		System.out.println(x+","+y+" shot!");

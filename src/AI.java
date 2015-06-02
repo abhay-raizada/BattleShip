@@ -98,11 +98,12 @@ public class AI {
 	                    g.fill(rect[row][column]);
 	                    //Systeg.fillRect(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);m.out.print("\t"+"*");
 	                }else if(board[row][column]==1){
-	                	g.setColor(Color.GREEN);
+	                	g.setColor(Color.YELLOW);
 	                	rect[row][column] = new Rectangle(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);
 	                    g.fill(rect[row][column]);
 	                    //System.out.print("\t"+"X");
-	                }else if(board[row][column]==2){
+	                }
+	                else if(board[row][column]==2){
 	                	g.setColor(Color.PINK);
 	                	rect[row][column] = new Rectangle(boardX+row*(cellW+padding),boardY+column*(cellH+padding),cellW,cellH);
 	                    g.fill(rect[row][column]);
